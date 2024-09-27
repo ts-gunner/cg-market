@@ -29,8 +29,8 @@ export default function Category() {
                             }}>
                             <View style={{ display: "flex", alignItems: "center" }}>
                                 <View style={{ height: "4rem", backgroundColor: "#009688", width: "0.2rem", marginLeft: "0.5rem" }}></View>
-                                <View style={{ marginLeft: "0.5rem" }}>
-                                    <Image src={item.img} mode='scaleToFill' style={{ width: "5.5rem", height: "5.5rem" }}></Image>
+                                <View style={{ marginLeft: "0.5rem",marginTop:"0.5rem",marginBottom:"0.5rem" }}>
+                                    <Image src={item.img} mode='aspectFit' style={{ width: "5.5rem", height: "5.5rem" }}></Image>
                                 </View>
                                 <View>
                                     <View style={{ fontWeight: 700 }}>{item.label}</View>
