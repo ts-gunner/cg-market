@@ -1,0 +1,112 @@
+.c-study-center-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-study-card {
+    box-shadow: 0 .125rem .25rem #ccc;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-study-add-evidence {
+    position: relative;
+    width: 6rem;
+    height: 8rem;
+    border: 0.1rem dashed #949494;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.c-study-label {
+    width: 100%;
+    display: flex;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.c-study-label2 {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: column;
+}
+
+.c-study-time-picker {
+    width: 6.5rem;
+    border: 2px solid #5c7d79;
+    border-radius: 3rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+}
+
+.c-study-textarea {
+    border: 5px solid #5c7d79;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.c-study-media-upload {
+    display: flex;
+    margin-left: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+}
+
+
+.c-study-media-container {
+    position: relative;
+}
+
+.c-study-media-img {
+    width: 6rem;
+    height: 8rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.c-study-media-close {
+    position: absolute;
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-top: 0.5rem;
+    border-radius: 25rem;
+    background-color: #009688;
+  
+    left: 5.2rem;
+    top: 0;
+}
+
+.c-study-button-group {
+    width: 80%;
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+.c-study-button-common {
+    width: 50%;
+    color:#ffffff;
+    border-radius: 10rem;
+    padding: 0.25rem;
+
+}
+
+.c-study-button-save {
+    background-color: #364443;
+}
+.c-study-button-submit {
+    background-color: #69930e;
+}
