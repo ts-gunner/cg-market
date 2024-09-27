@@ -1,5 +1,5 @@
 import { View,Text } from '@tarojs/components'
-import { useLoad,useRouter } from '@tarojs/taro'
+import { useRouter } from '@tarojs/taro'
 import { CATEGORY } from '@/data/config'
 import Study from './Study'
 import Housework from './Housework'
