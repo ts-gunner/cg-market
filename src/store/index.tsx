@@ -3,25 +3,28 @@ import { models, RootModel } from '@/models'
 import persistPlugin from "@rematch/persist";
 import { getStorageSync,setStorageSync,removeStorageSync } from '@tarojs/taro';
 const storage = {  
-    getItem: (key:string) => {  
+    getItem: async (key:string) => {  
       try {  
-        return getStorageSync(key);  
+        return getStorageSync(key)
       } catch (e) {  
-        console.error(e);  
+          console.error(e);
+          return null
       }  
     },  
-    setItem: (key:string, value:string) => {  
+    setItem: async (key:string, value:string) => {  
       try {  
         setStorageSync(key, value);  
       } catch (e) {  
-        console.error(e);  
+          console.error(e);  
+          return null
       }  
     },  
-    removeItem: (key:string) => {  
+    removeItem: async (key:string) => {  
       try {  
         removeStorageSync(key);  
       } catch (e) {  
-        console.error(e);  
+          console.error(e);  
+          return null
       }  
     },  
   };  
