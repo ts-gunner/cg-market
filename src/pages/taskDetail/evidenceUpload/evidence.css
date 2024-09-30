@@ -1,0 +1,51 @@
+.evidence-upload-card {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: column;
+}
+.evidence-add-evidence {
+    position: relative;
+    width: 6rem;
+    height: 8rem;
+    border: 0.1rem dashed #949494;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.evidence-media-upload {
+    display: flex;
+    margin-left: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+}
+.evidence-center-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.evidence-media-container {
+    position: relative;
+}
+
+.evidence-media-img {
+    width: 6rem;
+    height: 8rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+.evidence-media-close {
+    position: absolute;
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-top: 0.5rem;
+    border-radius: 25rem;
+    background-color: #009688;
+  
+    left: 5.2rem;
+    top: 0;
+}

@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from '@/store'
 import Frame from '@/component/Frame'
-import { chooseImage, navigateBack, useReady } from '@tarojs/taro'
+import { chooseImage, useReady } from '@tarojs/taro'
 import { View, Text, Image, Picker, Textarea } from '@tarojs/components'
 import { HouseworkTaskFiled, TaskCategory } from '@/data/typing'
-import CommonButton from './CommonButton'
+import CommonButton from './common/CommonButton'
 import "./housework.css"
 export default function Housework() {
   const dispatch = useDispatch<Dispatch>()
