@@ -12,7 +12,6 @@ function App({ children }: PropsWithChildren<any>) {
     console.log('App launched.')
   })
 
-  // children 是将要会渲染的页面
   return (
     <PersistGate persistor={persistor}>
       <Provider store={store}>

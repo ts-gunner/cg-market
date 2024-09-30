@@ -30,7 +30,8 @@ const storage = {
   };  
   
 const persist_plugin = persistPlugin<RootModel, RootModel>({
-    whitelist: [
+  whitelist: [
+      "taskModel"
     ],
     key: "store",
     storage,

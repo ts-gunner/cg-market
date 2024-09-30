@@ -1,0 +1,11 @@
+.c-housework-card {
+    box-shadow: 0 .125rem .25rem #ccc;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+

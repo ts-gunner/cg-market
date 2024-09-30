@@ -1,4 +1,4 @@
-import { View,Text } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import { useRouter } from '@tarojs/taro'
 import { CATEGORY } from '@/data/config'
 import Study from './Study'
@@ -11,8 +11,8 @@ export default function TaskDetail() {
   const category = router.params.category || ""
   const categoryTitle = CATEGORY[CATEGORY.findIndex(item => item.key === category)].label
 
-  const createPage = (key:string) => {
-    switch (key){
+  const createPage = (key: string) => {
+    switch (key) {
       case "study":
         return <Study />
       case "housework":
@@ -20,7 +20,7 @@ export default function TaskDetail() {
       case "sport":
         return <Sport />
       default:
-        return <Other/>
+        return <Other />
     }
   }
   return (
@@ -29,6 +29,6 @@ export default function TaskDetail() {
       <View>
         {createPage(category)}
       </View>
-      </View>
+    </View>
   )
 }

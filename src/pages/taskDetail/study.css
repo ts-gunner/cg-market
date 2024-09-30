@@ -28,7 +28,7 @@
 .c-study-label {
     width: 100%;
     display: flex;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     margin-bottom: 1rem;
     align-items: center;
 }
@@ -41,7 +41,7 @@
 }
 
 .c-study-time-picker {
-    width: 6.5rem;
+    width: 6rem;
     border: 2px solid #5c7d79;
     border-radius: 3rem;
     margin-left: 0.5rem;
@@ -87,26 +87,4 @@
   
     left: 5.2rem;
     top: 0;
-}
-
-.c-study-button-group {
-    width: 80%;
-    display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-}
-.c-study-button-common {
-    width: 50%;
-    color:#ffffff;
-    border-radius: 10rem;
-    padding: 0.25rem;
-
-}
-
-.c-study-button-save {
-    background-color: #364443;
-}
-.c-study-button-submit {
-    background-color: #69930e;
 }

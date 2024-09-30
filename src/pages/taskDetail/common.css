@@ -1,0 +1,28 @@
+
+.c-center-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-button-group {
+    width: 80%;
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+.c-button-common {
+    width: 50%;
+    color:#ffffff;
+    border-radius: 10rem;
+    padding: 0.25rem;
+
+}
+
+.c-button-save {
+    background-color: #364443;
+}
+.c-button-submit {
+    background-color: #69930e;
+}
