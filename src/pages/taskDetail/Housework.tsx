@@ -5,6 +5,7 @@ import { chooseImage, useReady } from '@tarojs/taro'
 import { View, Text, Image, Picker, Textarea } from '@tarojs/components'
 import { HouseworkTaskFiled, TaskCategory } from '@/data/typing'
 import CommonButton from './common/CommonButton'
+import Evidence from './evidenceUpload/Evidence'
 import "./housework.css"
 export default function Housework() {
   const dispatch = useDispatch<Dispatch>()
@@ -24,15 +25,18 @@ export default function Housework() {
     <Frame>
       {
         taskList.map((taskItem, taskIndex) => {
-          return <View key={taskIndex} className="c-housework-card">
-            <View className="c-housework-label">
-              <Text>家务类型:</Text>
+          return (
+            <View key={taskIndex} className="c-housework-card">
+              <View className="c-housework-label">
+                <Text>家务类型:</Text>
 
+              </View>
+              <Evidence taskIndex={taskIndex} />
             </View>
-          </View>
+          )
         })
       }
-    <CommonButton />
+      <CommonButton />
     </Frame>
   )
 }
