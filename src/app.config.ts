@@ -18,7 +18,7 @@ export default defineAppConfig({
                 text: "积分超市"
             },
             {
-                pagePath: "pages/home/index",
+                pagePath: "pages/mine/index",
                 iconPath: "images/mine.png",
                 selectedIconPath: "images/mine.png",
                 text: "我的"
@@ -27,7 +27,7 @@ export default defineAppConfig({
     },
     entryPagePath: "pages/tasks/index",
     pages: [
-        "pages/shop/index", 'pages/home/index', "pages/tasks/index",
+        "pages/shop/index", 'pages/mine/index', "pages/tasks/index",
         "pages/taskDetail/index"
     ],
     window: {
