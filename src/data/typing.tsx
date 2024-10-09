@@ -1,10 +1,11 @@
 export enum TaskCategory {
     DEFAULT= "default",
-    STUDY = "study",
-    HOUSEWORK="housework"
+    STUDY = "studyTaskData",
+    HOUSEWORK="houseworkTaskData",
+    SPORT="sportTaskData"
 }
 
-export type studyTaskItem = {
+export type StudyTaskItem = {
     date: string,
     startTime: string,
     endTime: string,
@@ -20,14 +21,22 @@ export enum StudyTaskField {
     UPLOADLIST = "uploadList"
 }
 
-export type houseworkTaskItem = {
+export type HouseworkTaskItem = {
     title: string,
-    content: string,
     uploadList: string[]
 }
 
 export enum HouseworkTaskFiled {
     TITLE = "title",
-    CONTENT = "content",
+    UPLOADLIST = "uploadList"
+}
+
+export type SportTaskItem = {
+    title: string,
+    uploadList: string[]
+}
+
+export enum SportTaskFiled {
+    TITLE = "title",
     UPLOADLIST = "uploadList"
 }

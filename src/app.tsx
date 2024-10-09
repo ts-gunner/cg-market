@@ -5,6 +5,7 @@ import { store } from "@/store"
 import { getPersistor } from "@rematch/persist";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import './app.less'
+import "taro-ui/dist/style/components/list.scss"
 
 const persistor = getPersistor();
 function App({ children }: PropsWithChildren<any>) {

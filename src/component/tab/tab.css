@@ -7,3 +7,41 @@
     position: relative;
     z-index: 0;
 }
+
+/* 动画效果 */  
+@keyframes slideInLeft {  
+    0% {  
+        transform: translateX(100%);  
+        opacity: 0;  
+    }  
+    100% {  
+        transform: translateX(0);  
+        opacity: 1;  
+    }  
+}  
+
+@keyframes slideInRight {  
+    0% {  
+        transform: translateX(-100%);  
+        opacity: 0;  
+    }  
+
+    100% {  
+        transform: translateX(0);  
+        opacity: 1;  
+    }  
+}  
+
+.custom-tab-content {
+    position: relative;  
+    width: 100%;  
+    overflow: hidden; /* 隐藏超出部分 */  
+}
+.slideInLeft {  
+    animation: slideInLeft 0.5s forwards; /* 向左进入的动画 */  
+}  
+
+.slideInRight {  
+    animation: slideInRight 0.5s forwards; /* 向右进入的动画 */  
+}  
+

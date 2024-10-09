@@ -17,6 +17,7 @@ export const TabContent = ({ children }: {
 }
 
 export default function Tab({ activateKey, children, onTabClick }: TabType) {
+    const [animation, setAnimation] = React.useState('');
     const [nowClientX, setNowClientX] = React.useState(0)
     const tabs = React.Children.toArray(children).map((child) => {
         if (React.isValidElement(child)) {
@@ -36,20 +37,19 @@ export default function Tab({ activateKey, children, onTabClick }: TabType) {
     const handleTabTouchEnd = (event: any) => {
         let currentClientX = event.changedTouches[0].clientX
         const tabIndex = tabs.findIndex(item => item.key === activateKey)
-        if (currentClientX < nowClientX) {
+        if (currentClientX < nowClientX && Math.abs(nowClientX - currentClientX) >= 50) {
             console.log("向左滑动")
+            setAnimation("slideInLeft")
             // 向左滑动
             if (tabIndex + 1 >= tabs.length) {
             } else {
                 onTabClick(tabs[tabIndex + 1].key)
             }
 
-        } 
-        else if (currentClientX === nowClientX){
-            // console.log("无需操作")
         }
-        else {
+        else if (currentClientX > nowClientX && Math.abs(nowClientX - currentClientX) >= 50){
             console.log("向右滑动")
+            setAnimation("slideInRight")
             // 向右滑动
             if (tabIndex - 1 < 0) {
             } else {
@@ -95,10 +95,13 @@ export default function Tab({ activateKey, children, onTabClick }: TabType) {
             <View
                 onTouchStart={handleTabTouchStart}
                 onTouchEnd={handleTabTouchEnd}
+
             >
                 {React.Children.toArray(children).map((child) => {
                     if (React.isValidElement(child)) {
-                        return child.props.tabKey === activateKey ? child : null
+                        return child.props.tabKey === activateKey ? (
+                            <View className={animation ? `custom-tab-content ${animation}` : "custom-tab-content"}>{child}</View>
+                        ) : null
                     } else {
                         return null
                     }

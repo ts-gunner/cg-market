@@ -3,7 +3,7 @@ import { chooseImage } from '@tarojs/taro'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from '@/store'
 import { IMAGE_URL, MAX_UPLOAD_COUNT } from '@/data/config'
-import { TaskCategory, StudyTaskField, HouseworkTaskFiled } from '@/data/typing'
+import { TaskCategory, StudyTaskField, HouseworkTaskFiled, SportTaskFiled } from '@/data/typing'
 import { AtIcon } from 'taro-ui'
 import "taro-ui/dist/style/components/icon.scss";
 import "./evidence.css"
@@ -14,6 +14,7 @@ export default function Evidence({taskIndex}) {
         let taskModel = rootState.taskModel
         if (currentType === TaskCategory.STUDY) return taskModel.studyTaskData
         else if (currentType === TaskCategory.HOUSEWORK) return taskModel.houseworkTaskData
+        else if (currentType === TaskCategory.SPORT) return taskModel.sportTaskData
         else return []
     })
     const dispatch = useDispatch<Dispatch>()
@@ -23,6 +24,7 @@ export default function Evidence({taskIndex}) {
         let keyName = ""
         if (currentType === TaskCategory.STUDY) keyName = StudyTaskField.UPLOADLIST
         else if (currentType === TaskCategory.HOUSEWORK) keyName = HouseworkTaskFiled.UPLOADLIST
+        else if (currentType === TaskCategory.SPORT) keyName = SportTaskFiled.UPLOADLIST
         chooseImage({
             count: MAX_UPLOAD_COUNT,
             success: (res) => {

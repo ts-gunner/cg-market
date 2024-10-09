@@ -1,6 +1,10 @@
 import { View } from '@tarojs/components'
 export default function Approval() {
   return (
-    <View>Approval</View>
+    <View style={{
+      height: "50vh",
+      backgroundColor: "red",
+
+    }}>Approval</View>
   )
 }

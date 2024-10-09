@@ -1,4 +1,4 @@
-.c-housework-card {
+.c-sport-card {
     width: 100%;
     box-shadow: 0 .125rem .25rem #ccc;
     border-radius: 1rem;
@@ -10,7 +10,7 @@
     flex-direction: column;
 }
 
-.c-housework-label {
+.c-sport-label {
     width: 100%;
     display: flex;
     margin-left: 1rem;
@@ -21,7 +21,7 @@
 .at-list {
     width: 100%;
 }
-.c-housework-picker {
+.c-sport-picker {
     width: 85%;
     margin-bottom: 2rem;
 }
