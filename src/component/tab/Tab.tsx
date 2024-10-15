@@ -61,7 +61,7 @@ export default function Tab({ activateKey, children, onTabClick }: TabType) {
 
     return (
         <View>
-            <View className='custom-tab-header'>
+            <View className='ft-tab-header'>
                 {tabs.map((item) => {
                     return <View
                         style={{
@@ -100,7 +100,7 @@ export default function Tab({ activateKey, children, onTabClick }: TabType) {
                 {React.Children.toArray(children).map((child) => {
                     if (React.isValidElement(child)) {
                         return child.props.tabKey === activateKey ? (
-                            <View className={animation ? `custom-tab-content ${animation}` : "custom-tab-content"}>{child}</View>
+                            <View className={animation ? `ft-tab-content ${animation}` : "ft-tab-content"}>{child}</View>
                         ) : null
                     } else {
                         return null

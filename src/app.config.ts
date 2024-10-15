@@ -3,7 +3,7 @@ export default defineAppConfig({
     tabBar: {
         color: "#b2ebf2",
         selectedColor: "#ffffff",
-        backgroundColor: "#009688",
+        backgroundColor: "#508AB2",
         list: [
             {
                 pagePath: "pages/tasks/index",

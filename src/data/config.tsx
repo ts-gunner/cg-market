@@ -1,9 +1,13 @@
 export const IMAGE_URL = {
     "study": "https://pic.imgdb.cn/item/66f5847cf21886ccc0337d8e.png",
-    "add": "https://pic.imgdb.cn/item/66f58474f21886ccc03375c3.png",
+    "add": "https://pic.imgdb.cn/item/670e8530d29ded1a8c62318e.png",
     "monkey": "https://pic.imgdb.cn/item/66f584d4f21886ccc033d91a.png",
     "housework": "https://pic.imgdb.cn/item/66f66e75f21886ccc0f4977c.png",
-    "sport": "https://pic.imgdb.cn/item/66f66ec3f21886ccc0f4d9f7.png"
+    "sport": "https://pic.imgdb.cn/item/66f66ec3f21886ccc0f4d9f7.png",
+    "achieve_icon": "https://pic.imgdb.cn/item/67089147d29ded1a8c59aa71.png",
+    "sport_icon": "https://pic.imgdb.cn/item/670894a7d29ded1a8c5d58ea.png",
+    "housework_icon": "https://pic.imgdb.cn/item/67089574d29ded1a8c5e5de5.png",
+    "study_icon": "https://pic.imgdb.cn/item/670895b6d29ded1a8c5e9763.png",
 }
 
 export const MAX_UPLOAD_COUNT = 5
@@ -32,3 +36,6 @@ export const CATEGORY = [
     }
 ]
 
+export const theme = {
+    "primary1": "#508AB2"
+}

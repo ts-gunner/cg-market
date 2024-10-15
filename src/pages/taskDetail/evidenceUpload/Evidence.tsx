@@ -5,6 +5,7 @@ import { RootState, Dispatch } from '@/store'
 import { IMAGE_URL, MAX_UPLOAD_COUNT } from '@/data/config'
 import { TaskCategory, StudyTaskField, HouseworkTaskFiled, SportTaskFiled } from '@/data/typing'
 import { AtIcon } from 'taro-ui'
+import { theme } from '@/data/config'
 import "taro-ui/dist/style/components/icon.scss";
 import "./evidence.css"
 
@@ -56,6 +57,7 @@ export default function Evidence({taskIndex}) {
                                     mode="aspectFill"
                                 ></Image>
                                 <View className='evidence-center-item evidence-media-close'
+                                style={{backgroundColor:theme.primary1}}
                                     onTap={() => deleteUploadImage(taskIndex, uploadURL)}>
                                     <AtIcon value='close' size="0.8rem" />
 

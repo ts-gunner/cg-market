@@ -1,6 +1,6 @@
 import { View,Image, Text, } from '@tarojs/components'
 import { navigateTo } from '@tarojs/taro'
-import { CATEGORY,IMAGE_URL } from "@/data/config"
+import { CATEGORY,IMAGE_URL,theme } from "@/data/config"
 import { AtButton } from 'taro-ui'
 import "taro-ui/dist/style/components/button.scss";
 
@@ -28,7 +28,7 @@ export default function Category() {
                                 display: "flex"
                             }}>
                             <View style={{ display: "flex", alignItems: "center" }}>
-                                <View style={{ height: "4rem", backgroundColor: "#009688", width: "0.2rem", marginLeft: "0.5rem" }}></View>
+                                <View style={{ height: "4rem", backgroundColor: theme.primary1, width: "0.2rem", marginLeft: "0.5rem" }}></View>
                                 <View style={{ marginLeft: "0.5rem",marginTop:"0.5rem",marginBottom:"0.5rem" }}>
                                     <Image src={item.img} mode='aspectFit' style={{ width: "5.5rem", height: "5.5rem" }}></Image>
                                 </View>

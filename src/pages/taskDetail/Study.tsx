@@ -1,15 +1,14 @@
 import Frame from '@/component/Frame'
-import { IMAGE_URL, MAX_UPLOAD_COUNT } from '@/data/config'
-import { View, Text, Image, Picker, Textarea } from '@tarojs/components'
-import { chooseImage, navigateBack, useReady } from '@tarojs/taro'
+import { View, Text, Picker, Textarea } from '@tarojs/components'
+import { useReady } from '@tarojs/taro'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from '@/store'
-import { AtIcon } from 'taro-ui'
 import { StudyTaskField, TaskCategory } from '@/data/typing'
 import CommonButton from './common/CommonButton'
 import Evidence from './evidenceUpload/Evidence'
 import "taro-ui/dist/style/components/icon.scss";
 import "./study.css"
+
 
 export default function Study() {
     const dispatch = useDispatch<Dispatch>()

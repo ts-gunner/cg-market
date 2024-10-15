@@ -1,0 +1,37 @@
+.mine-achieve-card {
+    height: 100%;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.achi-list-item {
+    width: 100%;
+    display: flex;
+    margin: 0.5rem 0rem;
+    gap: 2rem;
+    align-items: center;
+}
+
+.achi-list-item-left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.achi-list-item-left-image {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.achi-list-item-left-text {
+    font-size: 0.8rem;
+}
+.achi-list-item-center {
+    display: flex;
+    align-items: center;
+}
+
+.achi-list-item-center-progress {
+    width: 8rem;
+}
+

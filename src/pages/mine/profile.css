@@ -1,0 +1,49 @@
+.mine-info-container {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5rem;
+    box-shadow: 0 .125rem .25rem #ccc;
+    gap: 0.3rem;
+}
+
+.mine-info-grid-left {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 5rem;
+    gap: 0.3rem;
+}
+
+.mine-info-grid-right {
+    width: 5rem;
+
+}
+
+.mine-avator {
+    width: 4rem;
+    height: 4rem;
+}
+.mine-name-text {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.mine-role-text {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.mine-point-string-text {
+    color: #ffffff;
+    font-size: 0.8rem;
+}
+
+.mine-point-score-text {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fefefe;
+    font-family: sans-serif;  
+}
