@@ -1,0 +1,37 @@
+.mine-progress-card {
+    height: 100%;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.progress-list-item {
+    width: 100%;
+    display: flex;
+    margin: 0.5rem 0rem;
+    gap: 2rem;
+    align-items: center;
+}
+
+.progress-list-item-left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.progress-list-item-left-image {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.progress-list-item-left-text {
+    font-size: 0.8rem;
+}
+.progress-list-item-center {
+    display: flex;
+    align-items: center;
+}
+
+.progress-list-item-center-progress {
+    width: 8rem;
+}
+

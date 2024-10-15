@@ -8,6 +8,9 @@ export const IMAGE_URL = {
     "sport_icon": "https://pic.imgdb.cn/item/670894a7d29ded1a8c5d58ea.png",
     "housework_icon": "https://pic.imgdb.cn/item/67089574d29ded1a8c5e5de5.png",
     "study_icon": "https://pic.imgdb.cn/item/670895b6d29ded1a8c5e9763.png",
+    "setting_icon": "https://pic.imgdb.cn/item/670e866cd29ded1a8c6366ab.png",
+    "exchange_record_icon": "https://pic.imgdb.cn/item/670e9361d29ded1a8c6f958d.png",
+    "task_record_icon": "https://pic.imgdb.cn/item/670e9563d29ded1a8c714f2b.png",
 }
 
 export const MAX_UPLOAD_COUNT = 5
