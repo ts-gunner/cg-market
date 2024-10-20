@@ -59,8 +59,8 @@
 .good-item-consume {
     display: flex;
     gap: 0.5rem;
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: flex-end;
+    flex-direction: column;
 }
 
 
@@ -78,32 +78,34 @@
     background: -webkit-linear-gradient(left,#94c9ec, #508AB2);
     padding: 0.3rem 0.5rem;
     color: white;
-    font-size: 0.8rem;
+    font-size: 1rem;
     animation: btnShow 0.5s forwards;
     text-align: center;
 }
 
-
+.good-item-consume-box {
+    flex-grow: 1;
+}
 /* 动画效果 */  
 @keyframes moveOn {  
     0% {  
-        transform: translateX(100%);  
+        transform: translateY(100%);  
         opacity: 0;  
     }  
     100% {  
-        transform: translateX(0);  
+        transform: translateY(0);  
         opacity: 1;  
     }  
 }  
 
 @keyframes moveBack {  
     0% {  
-        transform: translateX(-100%);  
+        transform: translateY(-100%);  
         opacity: 0;  
     }  
 
     100% {  
-        transform: translateX(0);  
+        transform: translateY(0);  
         opacity: 1;  
     }  
 }  

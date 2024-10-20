@@ -50,16 +50,24 @@ export default function Goods({ category, name, description, amount, img }: Good
                         <Text>{expendAmount > 0 ? amount * expendAmount : amount}</Text>
                     </View>
                     <View className="good-item-consume">
-                        <AtInputNumber
-                            className={inputNumberClassName}
-                            type="number"
-                            min={0}
-                            max={10}
-                            step={1}
-                            value={expendAmount}
-                            onChange={changeAmount}
-                        />
-                        {expendAmount > 0 ? <Text className="good-item-btn">买入</Text> : null}
+                        <View className="good-item-consume-box">
+                            <AtInputNumber
+                                className={inputNumberClassName}
+                                type="number"
+                                min={0}
+                                max={10}
+                                step={1}
+                                value={expendAmount}
+                                onChange={changeAmount}
+                            />
+                        </View>
+
+                        {expendAmount > 0 ? (
+                            <View className="good-item-consume-box">
+                                <Text className="good-item-btn">买入</Text>
+                            </View>
+                        ) : null}
+
                     </View>
                 </View>
 
