@@ -19,7 +19,8 @@ export default function Setting() {
         title='设置'
         thumb={IMAGE_URL["setting_icon"]}
       >
-        <AtButton onClick={clearCache}>清理缓存</AtButton>
+        <AtButton className='mine-setting-btn' onClick={clearCache}>清理缓存</AtButton>
+        <AtButton className='mine-setting-btn' onClick={clearCache}>退出登录</AtButton>
       </AtCard>
     </View>
   )

@@ -11,6 +11,16 @@ export const IMAGE_URL = {
     "setting_icon": "https://pic.imgdb.cn/item/670e866cd29ded1a8c6366ab.png",
     "exchange_record_icon": "https://pic.imgdb.cn/item/670e9361d29ded1a8c6f958d.png",
     "task_record_icon": "https://pic.imgdb.cn/item/670e9563d29ded1a8c714f2b.png",
+    "coming_soon":"https://pic.imgdb.cn/item/670fde6cd29ded1a8c682f82.webp",
+    "housework_badge": "https://pic.imgdb.cn/item/6714ad48d29ded1a8c67be10.png",
+    "study_badge": "https://pic.imgdb.cn/item/6714ad48d29ded1a8c67be34.png",
+    "sport_badge": "https://pic.imgdb.cn/item/6714ad48d29ded1a8c67be44.png",
+    "omission": "https://pic.imgdb.cn/item/6714b0c8d29ded1a8c701915.png",
+    "AI_brain": "https://pic.imgdb.cn/item/6714b4d0d29ded1a8c76875a.png",
+    "calculator": "https://pic.imgdb.cn/item/6714b526d29ded1a8c76d3df.png",
+    "common_tool": "https://pic.imgdb.cn/item/6714b5c5d29ded1a8c77659b.png",
+    "translation": "https://pic.imgdb.cn/item/6714bbcfd29ded1a8c814953.png",
+    "gold": "https://pic.imgdb.cn/item/671508f9d29ded1a8c0bd320.png",
 }
 
 export const MAX_UPLOAD_COUNT = 5
@@ -42,3 +52,6 @@ export const CATEGORY = [
 export const theme = {
     "primary1": "#508AB2"
 }
+
+// 成就列表渲染的个数
+export const ACHIEVEMENT_AVALIABLE_COUNT = 5

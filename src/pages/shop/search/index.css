@@ -1,0 +1,8 @@
+.shop-search-bar > .at-search-bar__action {
+    background: -webkit-linear-gradient(left,#94c9ec, #508AB2);
+    border-radius: 1rem;
+}
+
+.shop-search-container {
+    margin-bottom: 60px;
+}

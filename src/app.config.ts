@@ -14,13 +14,19 @@ export default defineAppConfig({
             {
                 pagePath: "pages/shop/index",
                 iconPath: "images/shop.png",
-                selectedIconPath: "images/shop.png",
+                selectedIconPath: "images/shop-active.png",
                 text: "积分超市"
+            },
+            {
+                pagePath: "pages/toolbox/index",
+                iconPath: "images/toolbox.png",
+                selectedIconPath: "images/toolbox-active.png",
+                text: "工具箱"
             },
             {
                 pagePath: "pages/mine/index",
                 iconPath: "images/mine.png",
-                selectedIconPath: "images/mine.png",
+                selectedIconPath: "images/mine-active.png",
                 text: "我的"
             }
         ]
@@ -28,7 +34,7 @@ export default defineAppConfig({
     entryPagePath: "pages/tasks/index",
     pages: [
         "pages/shop/index", 'pages/mine/index', "pages/tasks/index",
-        "pages/taskDetail/index"
+        "pages/taskDetail/index", "pages/toolbox/index"
     ],
     window: {
         navigationBarTitleText: '成果集市',
