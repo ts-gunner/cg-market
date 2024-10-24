@@ -1,0 +1,10 @@
+.at-message {
+    width: 50%;
+    top: 1rem;
+    border-radius: 2rem;
+    left: 25%;
+}
+
+.at-message--success {
+    background-color: #73c088;
+}

@@ -21,6 +21,7 @@ export const IMAGE_URL = {
     "common_tool": "https://pic.imgdb.cn/item/6714b5c5d29ded1a8c77659b.png",
     "translation": "https://pic.imgdb.cn/item/6714bbcfd29ded1a8c814953.png",
     "gold": "https://pic.imgdb.cn/item/671508f9d29ded1a8c0bd320.png",
+    "not_auth": "https://pic.imgdb.cn/item/6718f46dd29ded1a8cf1d6a2.png",
 }
 
 export const MAX_UPLOAD_COUNT = 5
