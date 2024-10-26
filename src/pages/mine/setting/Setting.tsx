@@ -29,7 +29,7 @@ export default function Setting() {
 
   const cgLogout = () => {
     dispatch.authModel.logout()
- 
+
   }
 
   const getUserSetting = () => {
@@ -55,6 +55,7 @@ export default function Setting() {
           </>
         ) : (
           <>
+            <AtButton className='mine-setting-btn' onClick={clearCache}>清理缓存</AtButton>
             <AtButton className='mine-setting-btn' onClick={cgLogin}>登录</AtButton>
           </>
         )}

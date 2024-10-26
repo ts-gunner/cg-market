@@ -13,7 +13,7 @@ export default function Profile() {
         if (isAuth){
             dispatch.authModel.setupUserInfo()
         }
-    }, [])
+    }, [isAuth])
     const changeUserProfile = () => navigateTo({url: "/pages/userPage/index"})
     return (
 
