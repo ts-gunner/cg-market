@@ -34,7 +34,7 @@ export default defineAppConfig({
     entryPagePath: "pages/tasks/index",
     pages: [
         "pages/shop/index", 'pages/mine/index', "pages/tasks/index",
-        "pages/taskDetail/index", "pages/toolbox/index"
+        "pages/taskDetail/index", "pages/toolbox/index", "pages/userPage/index"
     ],
     window: {
         navigationBarTitleText: '成果集市',

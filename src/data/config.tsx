@@ -1,3 +1,5 @@
+export const load_mode = "online"
+
 export const IMAGE_URL = {
     "study": "https://pic.imgdb.cn/item/66f5847cf21886ccc0337d8e.png",
     "add": "https://pic.imgdb.cn/item/670e8530d29ded1a8c62318e.png",
@@ -53,6 +55,7 @@ export const CATEGORY = [
 export const theme = {
     "primary1": "#508AB2"
 }
+
 
 // 成就列表渲染的个数
 export const ACHIEVEMENT_AVALIABLE_COUNT = 5
