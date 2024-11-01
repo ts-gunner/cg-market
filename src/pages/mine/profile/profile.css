@@ -48,3 +48,14 @@
     font-family: sans-serif;  
 }
 
+.mine-role-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.mine-role-tag {
+    display: flex;
+    gap: 0.5rem
+}

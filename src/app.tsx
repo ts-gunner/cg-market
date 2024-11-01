@@ -13,6 +13,9 @@ import "taro-ui/dist/style/components/button.scss"
 import "taro-ui/dist/style/components/message.scss"
 import "taro-ui/dist/style/components/progress.scss"
 import "taro-ui/dist/style/components/icon.scss"
+import "taro-ui/dist/style/components/tag.scss"
+import "taro-ui/dist/style/components/toast.scss"
+
 
 const persistor = getPersistor();
 function App({ children }: PropsWithChildren<any>) {

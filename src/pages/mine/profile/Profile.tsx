@@ -3,21 +3,24 @@ import { theme } from '@/data/config';
 import { navigateTo } from '@tarojs/taro'
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, Dispatch } from '@/store';
+import { AtTag } from 'taro-ui'
 import "./profile.css"
 import { useEffect } from 'react';
 export default function Profile() {
     const isAuth = useSelector((state: RootState) => state.authModel.isAuth)
     const profile = useSelector((state: RootState) => state.authModel.profile)
+    const roles = useSelector((state: RootState) => state.authModel.roles || [])
     const dispatch = useDispatch<Dispatch>()
     useEffect(() => {
-        if (isAuth){
+        if (isAuth) {
             dispatch.authModel.setupUserInfo()
         }
     }, [isAuth])
-    const changeUserProfile = () => navigateTo({url: "/pages/userPage/index"})
+    const changeUserProfile = () => navigateTo({ url: "/pages/userPage/index" })
     return (
 
         <View className='mine-info-container' style={{ backgroundColor: theme.primary1 }}>
+
             {isAuth ? (
                 <>
                     <View className='mine-info-grid-left' style={{ backgroundColor: theme.primary1 }}>
@@ -28,8 +31,27 @@ export default function Profile() {
                             <View>
                                 <Text className='mine-name-text'>昵称：{profile.nickName}</Text>
                             </View>
-                            <View>
-                                <Text className="mine-role-text">角色：小马喽</Text>
+                            <View className='mine-role-container'>
+                                <Text className="mine-role-text">角色：</Text>
+                                {
+                                    roles.length > 0 ? (
+                                        <View className='mine-role-tag'>
+                                            {
+                                                roles.map((item) => {
+                                                    return <AtTag
+                                                        key={item.role_id}
+                                                        type='primary'
+                                                        size="small"
+                                                        circle >{item.role_name}</AtTag>
+                                                })
+                                            }
+
+                                        </View>
+                                    ) : <AtTag
+                                        type='primary'
+                                        size='small'
+                                        circle >未知</AtTag>
+                                }
                             </View>
                         </View>
                     </View>
@@ -55,6 +77,7 @@ export default function Profile() {
                     </View>
                 </View>
             )}
+
 
 
         </View>

@@ -4,15 +4,17 @@ import Progress from './progress/Progress';
 import Setting from './setting/Setting';
 import Achievement from './achieve/Achievement';
 import Common from './common/Common';
-import { AtMessage } from 'taro-ui'
+import { AtMessage,AtToast } from 'taro-ui'
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import "./index.css"
 export default function Mine() {
     const isAuth = useSelector((state: RootState) => state.authModel.isAuth)
+    const loading = useSelector((state: RootState) => state.authModel.loading)
     return (
         <Frame>
             <AtMessage />
+            <AtToast status="loading" isOpened={loading} text='加载中...' duration={0}></AtToast>
             <Profile></Profile>
             {isAuth ? (
                 <>

@@ -1,7 +1,7 @@
 import { createModel } from "@rematch/core";
 import type { RootModel } from '@/models'
 import { request, authorize } from '@tarojs/taro'
-import { IMAGE_URL, load_mode } from "@/data/config";
+import { IMAGE_URL } from "@/data/config";
 import { routes } from "@/data/api";
 import Taro from '@tarojs/taro'
 import storage from "@/utils/storage";
@@ -9,10 +9,15 @@ type ProfileBase = {
     avatar: string,
     nickName: string
 }
-
+type RoleBase = {
+    role_id: string,
+    role_name: string,
+}
 type AuthModelType = {
     isAuth: boolean,
-    profile: ProfileBase
+    profile: ProfileBase,
+    roles: RoleBase[],
+    loading: boolean,
 }
 const initProfile: ProfileBase = {
     avatar: IMAGE_URL["not_auth"],
@@ -20,7 +25,9 @@ const initProfile: ProfileBase = {
 }
 const initState: AuthModelType = {
     isAuth: false,
-    profile: initProfile
+    profile: initProfile,
+    roles: [],
+    loading: false,
 }
 
 export const authModel = createModel<RootModel>()({
@@ -58,53 +65,60 @@ export const authModel = createModel<RootModel>()({
                 profile: initProfile
             }
         },
+        setRoles: (state: AuthModelType, payload: RoleBase[]) => {
+            return {
+                ...state,
+                roles: payload
+            }
+        },
+        setLoading: (state: AuthModelType, payload: boolean) => {
+            return {
+                ...state,
+                loading: payload
+            }
+        }
     },
     effects: (dispatch) => ({
         login: (payload: string) => {
-            if (load_mode === "online") {
-                request({
-                    method: "GET",
-                    url: `${routes.login}?code=${payload}`,
-                    success: (res) => {
-                        console.log("login....", res)
-                        let response = res.data
-                        if (response.code === 200) {
-                            storage.setItem("openid", response.data.openid)
-                            storage.setItem("session_key", response.data.session_key)
-                            dispatch.authModel.setAuthState(true)
-                            // 用户授权
-                            authorize({ scope: "scope.camera" })
-                            authorize({ scope: "scope.userInfo" })
-                            Taro.atMessage({
-                                'message': '登录成功！！',
-                                'type': "success",
-                                "duration": 2000
-                            })
-                        } else {
-                            Taro.atMessage({
-                                'message': `登录失败: ${response.msg}`,
-                                'type': "error",
-                                "duration": 2000
-                            })
-                        }
-                    },
-                    fail: (res) => {
-                        console.log("fail response: ", res)
+            dispatch.authModel.setLoading(true)
+            request({
+                method: "GET",
+                url: `${routes.login}?code=${payload}`,
+                success: (res) => {
+                    console.log("login....", res)
+                    dispatch.authModel.setLoading(false)
+                    let response = res.data
+                    if (response.code === 200) {
+                        storage.setItem("openid", response.data.openid)
+                        storage.setItem("session_key", response.data.session_key)
+                        storage.setItem("token", response.data.token)
+                        dispatch.authModel.setAuthState(true)
+                        // 用户授权
+                        authorize({ scope: "scope.camera" })
+                        authorize({ scope: "scope.userInfo" })
                         Taro.atMessage({
-                            'message': '登录失败！！',
+                            'message': '登录成功！！',
+                            'type': "success",
+                            "duration": 2000
+                        })
+                    } else {
+                        Taro.atMessage({
+                            'message': `登录失败: ${response.msg}`,
                             'type': "error",
                             "duration": 2000
                         })
-                    },
-                })
-            } else if (load_mode === "offline") {
-                dispatch.authModel.setAuthState(true)
-                storage.setItem("openid", "openid-" + payload)
-                storage.setItem("session_key", "session_key-" + payload)
-                // 用户授权
-                authorize({ scope: "scope.camera" })
-                authorize({ scope: "scope.userInfo" })
-            }
+                    }
+                },
+                fail: (res) => {
+                    console.log("fail response: ", res)
+                    Taro.atMessage({
+                        'message': '登录失败！！',
+                        'type': "error",
+                        "duration": 2000
+                    })
+                },
+            })
+
         },
         logout: () => {
             storage.removeItem("openid")
@@ -121,12 +135,27 @@ export const authModel = createModel<RootModel>()({
             let openid = await storage.getItem("openid")
             request({
                 url: `${routes.getUserProfile}?openid=${openid}`,
+                header: {
+                    "Auth-Token": await storage.getItem("token")
+                },
                 success: (res) => {
-                    let data:any = res.data
-                    if (data.code === 200){
-                        dispatch.authModel.setNickName(data.data["nickname"] || "")
-                        dispatch.authModel.setAvator(data.data["avatar_url"] || IMAGE_URL["not_auth"])
+                    let data: any = res.data
+                    console.log(data)
+                    let profile = data.data["profile"]
+                    console.log("profile", profile)
+                    let roles = data.data["roles"]
+                    dispatch.authModel.setRoles(roles)
+                    if (data.code === 200) {
+                        dispatch.authModel.setNickName(profile["nickname"] || "")
+                        dispatch.authModel.setAvator(profile["avatar_url"] || IMAGE_URL["not_auth"])
                     }
+                },
+                fail: () => {
+                    Taro.atMessage({
+                        'message': '网络异常',
+                        'type': "error",
+                        "duration": 2000
+                    })
                 }
             })
         }

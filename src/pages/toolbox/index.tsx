@@ -24,8 +24,8 @@ const boxList = [
         icon: IMAGE_URL["calculator"]
     },
     {
-        key: "calculator3",
-        label: "计算器",
+        key: "clearCache",
+        label: "清理缓存",
         icon: IMAGE_URL["calculator"]
     }
 ]
