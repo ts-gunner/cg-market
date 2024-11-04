@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from '@/store'
 import Frame from '@/component/Frame'
 import { useReady } from '@tarojs/taro'
-import { View, Picker } from '@tarojs/components'
+import { View, Picker, Text } from '@tarojs/components'
 import { SportTaskFiled, TaskCategory } from '@/data/typing'
 import CommonButton from './common/CommonButton'
 import Evidence from './evidenceUpload/Evidence'
@@ -13,7 +13,7 @@ const sportTypeList = [
     "跳高", "打篮球", "踢足球", "跳绳", "跑步"
 ]
 
-export default function Sport() {
+export default function Sport({point}: {point: number}) {
     const dispatch = useDispatch<Dispatch>()
     const taskList = useSelector((rootState: RootState) => rootState.taskModel.sportTaskData)
     useReady(() => {
@@ -21,6 +21,7 @@ export default function Sport() {
         if (taskList.length === 0) {
             dispatch.taskModel.addTaskItem({
                 title: "",
+                point: point,
                 uploadList: []
             })
         }
@@ -49,6 +50,7 @@ export default function Sport() {
                     )
                 })
             }
+            <Text>合计： {point * taskList.length}</Text>
             <CommonButton />
         </Frame>
     )

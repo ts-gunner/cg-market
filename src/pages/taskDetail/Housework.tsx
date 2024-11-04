@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState, Dispatch } from '@/store'
 import Frame from '@/component/Frame'
 import { useReady } from '@tarojs/taro'
-import { View, Picker } from '@tarojs/components'
+import { View, Picker, Text } from '@tarojs/components'
 import { HouseworkTaskFiled, TaskCategory } from '@/data/typing'
 import CommonButton from './common/CommonButton'
 import Evidence from './evidenceUpload/Evidence'
@@ -12,7 +12,7 @@ import "./housework.css"
 const homeworkList = [
   "扫地拖地", "洗碗", "晒衣服"
 ]
-export default function Housework() {
+export default function Housework({point}: {point: number}) {
   const dispatch = useDispatch<Dispatch>()
   const taskList = useSelector((rootState: RootState) => rootState.taskModel.houseworkTaskData)
 
@@ -21,6 +21,7 @@ export default function Housework() {
     if (taskList.length === 0) {
       dispatch.taskModel.addTaskItem({
         title: "",
+        point: point,
         uploadList: []
       })
     }
@@ -48,6 +49,7 @@ export default function Housework() {
           )
         })
       }
+      <Text>合计： {point * taskList.length}</Text>
       <CommonButton />
     </Frame>
   )

@@ -31,10 +31,11 @@ export default defineAppConfig({
             }
         ]
     },
-    entryPagePath: "pages/tasks/index",
+    entryPagePath: "pages/mine/index",
     pages: [
         "pages/shop/index", 'pages/mine/index', "pages/tasks/index",
-        "pages/taskDetail/index", "pages/toolbox/index", "pages/userPage/index"
+        "pages/taskDetail/index", "pages/toolbox/index", "pages/userPage/index",
+        "pages/taskAuditDetail/index",
     ],
     window: {
         navigationBarTitleText: '成果集市',

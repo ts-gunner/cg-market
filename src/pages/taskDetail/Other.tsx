@@ -1,6 +1,6 @@
 import { View } from '@tarojs/components'
-export default function Other() {
+export default function Other({point}: {point: number}) {
   return (
-    <View>Other</View>
+    <View>Other {point}</View>
   )
 }

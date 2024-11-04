@@ -3,9 +3,10 @@ import { View } from '@tarojs/components'
 import Frame from "@/component/Frame";
 import Tab, { TabContent } from '@/component/tab/Tab';
 import Category from './Category';
-import Approval from './Approval';
-import Ready from './Ready';
+import TaskSituation from './TaskSituation';
+import { AtMessage } from 'taro-ui'
 import "./index.css"
+import { TaskStatus } from '@/data/typing';
 
 const tabData = [
     {
@@ -22,6 +23,11 @@ const tabData = [
         key: 2,
         label: "已完成",
         keyName: "done"
+    },
+    {
+        key: 3,
+        label: "审核失败",
+        keyName: "fail"
     }
 ]
 
@@ -32,13 +38,16 @@ export default function Task() {
             case "category":
                 return <Category></Category>
             case "approval":
-                return <Approval />
+                return <TaskSituation taskStatus={TaskStatus.REVIEW}/>
             case "done":
-                return <Ready />
+                return <TaskSituation taskStatus={TaskStatus.APPROVED}/>
+            case "fail":
+                return <TaskSituation taskStatus={TaskStatus.FAILED}/>
         }
     }
     return (
         <Frame>
+            <AtMessage />
             <View style={{ marginTop: "1rem" }}>
                 <Tab activateKey={tabKey} onTabClick={(key) => setTabKey(key)}>
                     {tabData.map((tabItem) => {

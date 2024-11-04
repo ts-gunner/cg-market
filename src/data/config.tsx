@@ -34,21 +34,21 @@ export const CATEGORY = [
         label: "学习",
         description: "每日打卡学习，获取积分",
         img: IMAGE_URL["study"],
-        point: "0.2"
+        point: 0.2
     },
     {
         key: "housework",
         label: "家务",
         description: "帮助父母分担家务，获取积分",
         img: IMAGE_URL["housework"],
-        point: "0.2"
+        point: 0.2
     },
     {
         key: "sport",
         label: "运动",
         description: "每日打卡运动，提高自身免疫力",
         img: IMAGE_URL["sport"],
-        point: "0.2"
+        point: 0.2
     }
 ]
 

@@ -38,7 +38,6 @@ export default function Category() {
                                 </View>
                             </View>
                             <View style={{ display: "flex", alignItems: "center" }}>
-                                <View style={{ marginRight: "0.5rem" }}>{item.point}</View>
                                 <View style={{ marginRight: "0.5rem" }}>
                                     <AtButton className="category-add" onClick={() => enterCategory(item.key)}>添加</AtButton>
                                 </View>

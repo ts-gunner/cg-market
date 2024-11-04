@@ -10,7 +10,7 @@ import "taro-ui/dist/style/components/icon.scss";
 import "./study.css"
 
 
-export default function Study() {
+export default function Study({ point }: { point: number }) {
     const dispatch = useDispatch<Dispatch>()
     const taskList = useSelector((rootState: RootState) => rootState.taskModel.studyTaskData)
     useReady(() => {
@@ -21,11 +21,12 @@ export default function Study() {
                 startTime: "",
                 endTime: "",
                 content: "",
+                point,
                 uploadList: []
             })
         }
     })
-    
+
     const changeStudyDate = (event: any, index: number) => {
         dispatch.taskModel.changeTaskItem({ index, keyName: StudyTaskField.DATE, keyValue: event.detail.value })
     }
@@ -35,10 +36,10 @@ export default function Study() {
     const changeStudyEndTime = (event: any, index: number) => {
         dispatch.taskModel.changeTaskItem({ index, keyName: StudyTaskField.ENDTIME, keyValue: event.detail.value })
     }
-    const changeStudyContent = (event: any, index: number) => { 
+    const changeStudyContent = (event: any, index: number) => {
         dispatch.taskModel.changeTaskItem({ index, keyName: StudyTaskField.CONTENT, keyValue: event.detail.value })
     }
-    
+
     return (
         <Frame>
             {
@@ -57,22 +58,22 @@ export default function Study() {
                                     <View className="c-study-time-picker">{taskItem.startTime || "起始时间"}</View>
                                 </Picker>
                                 <Text>至</Text>
-                                <Picker mode='time' onChange={(event) => changeStudyEndTime(event, taskIndex)} value={taskItem.endTime}>
+                                <Picker mode='time' start={taskItem.startTime} onChange={(event) => changeStudyEndTime(event, taskIndex)} value={taskItem.endTime}>
                                     <View className="c-study-time-picker" >{taskItem.endTime || "终止时间"}</View>
                                 </Picker>
                             </View>
                             <View className="c-study-label2">
                                 <Text style={{ marginLeft: "0.5rem" }}>学习内容:</Text>
                                 <View style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                    <Textarea className='c-study-textarea' defaultValue={taskItem.content} onInput={(event)=> changeStudyContent(event, taskIndex)}></Textarea>
+                                    <Textarea className='c-study-textarea' defaultValue={taskItem.content} onInput={(event) => changeStudyContent(event, taskIndex)}></Textarea>
                                 </View>
                             </View>
-                            <Evidence taskIndex={taskIndex}/>
+                            <Evidence taskIndex={taskIndex} />
                         </View>
                     )
                 })
             }
-
+            <Text >合计： {point * taskList.length}</Text>
             <CommonButton />
 
         </Frame>
