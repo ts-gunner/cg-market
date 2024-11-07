@@ -15,6 +15,8 @@ import "taro-ui/dist/style/components/progress.scss"
 import "taro-ui/dist/style/components/icon.scss"
 import "taro-ui/dist/style/components/tag.scss"
 import "taro-ui/dist/style/components/toast.scss"
+import "taro-ui/dist/style/components/fab.scss"
+import "taro-ui/dist/style/components/divider.scss"
 
 
 const persistor = getPersistor();

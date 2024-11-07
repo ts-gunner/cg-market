@@ -1,0 +1,63 @@
+.at-tag {
+    background-color: #105c8f;
+    color: white;
+}
+
+.task-audit-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    padding: 0 0.5rem;
+}
+.at-divider {
+    height: 1rem;
+}
+.list-item-key-text {
+    font-weight: 600;
+}
+.list-item-value-text {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.task-audit-imgs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.task-audit-evidence {
+    margin-top: 1rem;
+}
+
+.task-audit-evidence-image {
+    height: 8rem;
+    width: 6rem;
+}
+
+.task-audit-approval-btn {
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    color: white;
+}
+.task-audit-approval-pass {
+    background-color: #219d08;
+
+}
+.task-audit-approval-fail {
+    background-color: #e25129;
+
+}
+.task-audit-approval-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.task-audit-approval-comment {
+    border: 5px solid #5c7d79;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+}

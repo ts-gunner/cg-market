@@ -208,9 +208,27 @@ export const taskModel = createModel<RootModel>()({
                         if (response.code === 200) {
                             console.log("保存成功！！")
                             dispatch.taskModel.clearTask()
+                            Taro.atMessage({
+                                'message': '保存成功！！',
+                                'type': "success",
+                                "duration": 2000
+                            })
                             navigateBack()
 
+                        }else {
+                            Taro.atMessage({
+                                'message': '添加任务接口异常',
+                                'type': "error",
+                                "duration": 2000
+                            })
                         }
+                    },
+                    fail: (res) => {
+                        Taro.atMessage({
+                            'message': '添加任务异常： ' + res.errMsg,
+                            'type': "error",
+                            "duration": 2000
+                        })
                     }
 
                 })

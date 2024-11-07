@@ -8,14 +8,17 @@ import "./profile.css"
 import { useEffect } from 'react';
 export default function Profile() {
     const isAuth = useSelector((state: RootState) => state.authModel.isAuth)
+    const isRefresh = useSelector((state: RootState) => state.globalModel.isRefresh)
     const profile = useSelector((state: RootState) => state.authModel.profile)
     const roles = useSelector((state: RootState) => state.authModel.roles || [])
+    const total_points = useSelector((state: RootState) => state.shopModel.total_points)
     const dispatch = useDispatch<Dispatch>()
     useEffect(() => {
         if (isAuth) {
             dispatch.authModel.setupUserInfo()
+            dispatch.shopModel.get_user_balances()
         }
-    }, [isAuth])
+    }, [isAuth, isRefresh])
     const changeUserProfile = () => navigateTo({ url: "/pages/userPage/index" })
     return (
 
@@ -59,7 +62,9 @@ export default function Profile() {
                         <View style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <Text className='mine-point-string-text'>我的积分</Text>
                         </View>
-                        <Text className='mine-point-score-text'>995223</Text>
+                        <View style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                            <Text className='mine-point-score-text'>{total_points}</Text>
+                        </View>
                     </View>
                 </>
             ) : (

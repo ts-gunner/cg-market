@@ -23,7 +23,8 @@ export const IMAGE_URL = {
     "common_tool": "https://pic.imgdb.cn/item/6714b5c5d29ded1a8c77659b.png",
     "translation": "https://pic.imgdb.cn/item/6714bbcfd29ded1a8c814953.png",
     "gold": "https://pic.imgdb.cn/item/671508f9d29ded1a8c0bd320.png",
-    "not_auth": "https://pic.imgdb.cn/item/6718f46dd29ded1a8cf1d6a2.png",
+    "not_auth": "https://pic.imgdb.cn/item/6718f46dd29ded1a8cf1d6a2.png",  // 未登录头像
+    "un-login": "https://pic.imgdb.cn/item/672cd0a9d29ded1a8c526258.png"  // 未登录页面插画
 }
 
 export const MAX_UPLOAD_COUNT = 5
@@ -59,3 +60,28 @@ export const theme = {
 
 // 成就列表渲染的个数
 export const ACHIEVEMENT_AVALIABLE_COUNT = 5
+
+export const taskTabData = [
+    {
+        key: 0,
+        label: "任务类别",
+        keyName: "category"
+    },
+    {
+        key: 1,
+        label: "待审核",
+        keyName: "approval"
+    },
+    {
+        key: 2,
+        label: "已完成",
+        keyName: "done"
+    },
+    {
+        key: 3,
+        label: "审核失败",
+        keyName: "fail"
+    }
+]
+
+export const workerRole = "monkey"

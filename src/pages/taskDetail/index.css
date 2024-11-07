@@ -5,3 +5,18 @@
     font-weight: 700;
 }
 
+.at-message {
+    width: 70%;
+    top: 1rem;
+    border-radius: 2rem;
+    left: 15%;
+    padding: 0.5rem 0.5rem;
+}
+
+.at-message--success {
+    background-color: #73c088;
+}
+
+.at-message--fail {
+    background-color: #802129;
+}
