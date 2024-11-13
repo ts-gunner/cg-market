@@ -1,6 +1,7 @@
 import { View, Image,Text } from "@tarojs/components"
 import { IMAGE_URL } from "@/data/config"
 import { AtCard } from "taro-ui"
+import { navigateTo } from "@tarojs/taro"
 import "./index.css"
 const boxList = [
     {
@@ -12,6 +13,11 @@ const boxList = [
         key: "calculator",
         label: "计算器",
         icon: IMAGE_URL["calculator"]
+    },
+    {
+        key: "cookbook",
+        label: "食谱",
+        icon: IMAGE_URL["cookbook"]
     },
     {
         key: "translation",
@@ -29,6 +35,10 @@ const boxList = [
         icon: IMAGE_URL["calculator"]
     }
 ]
+
+const enterToolBoxPage = (key:string) => {
+    navigateTo({url: `/pages/toolPage/index?toolKey=${key}`})
+}
 export default function ToolBox() {
     return (
         <View>
@@ -42,7 +52,7 @@ export default function ToolBox() {
                         boxList.map((item) => {
                             return (
                                 <View className="toolbox-tool-item" key={item.key}>
-                                    <View className="toolbox-tool-item-box">
+                                    <View className="toolbox-tool-item-box" onClick={()=>enterToolBoxPage(item.key)}>
                                         <Image className="toolbox-tool-item-img" src={item.icon}></Image>
                                         <Text className="toolbox-tool-item-text">{item.label}</Text>
                                     </View>

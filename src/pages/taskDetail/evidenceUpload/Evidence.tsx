@@ -9,47 +9,41 @@ import { theme } from '@/data/config'
 import "taro-ui/dist/style/components/icon.scss";
 import "./evidence.css"
 
-export default function Evidence({taskIndex}) {
+export default function Evidence() {
     const currentType = useSelector((rootState: RootState) => rootState.taskModel.currentType)
-    const taskList = useSelector((rootState: RootState) => {
+    const taskData = useSelector((rootState: RootState) => {
         let taskModel = rootState.taskModel
         if (currentType === TaskCategory.STUDY) return taskModel.studyTaskData
         else if (currentType === TaskCategory.HOUSEWORK) return taskModel.houseworkTaskData
         else if (currentType === TaskCategory.SPORT) return taskModel.sportTaskData
-        else return []
     })
     const dispatch = useDispatch<Dispatch>()
 
-    const uploadImage = (index: number) => {
-        let uploadList = taskList[index].uploadList
-        let keyName = ""
-        if (currentType === TaskCategory.STUDY) keyName = StudyTaskField.UPLOADLIST
-        else if (currentType === TaskCategory.HOUSEWORK) keyName = HouseworkTaskFiled.UPLOADLIST
-        else if (currentType === TaskCategory.SPORT) keyName = SportTaskFiled.UPLOADLIST
+    const uploadImage = () => {
         chooseImage({
             count: MAX_UPLOAD_COUNT,
             success: (res) => {
-                let arr = [...uploadList]
+                let file_list: string[] = []
                 for (let filepath of res.tempFilePaths) {
-                    arr.push(filepath)
+                    file_list.push(filepath)
                 }
-                dispatch.taskModel.changeTaskItem({ index, keyName, keyValue: arr })
+                dispatch.taskModel.uploadAttachment(file_list)
             }
         })
     }
-    const deleteUploadImage = (taskIndex: number, uploadURL: string) => {
-        let arr = taskList[taskIndex].uploadList.filter(url => url !== uploadURL)
+    const deleteUploadImage = (uploadURL: string) => {
+        let arr = taskData?.uploadList.filter(url => url !== uploadURL)
         let keyName = ""
         if (currentType === TaskCategory.STUDY) keyName = StudyTaskField.UPLOADLIST
         else if (currentType === TaskCategory.HOUSEWORK) keyName = HouseworkTaskFiled.UPLOADLIST
-        dispatch.taskModel.changeTaskItem({ index: taskIndex, keyName, keyValue: arr })
+        dispatch.taskModel.changeTaskItem({ keyName, keyValue: arr })
     }
     return (
         <View className="evidence-upload-card">
             <Text style={{ marginLeft: "0.5rem" }}>凭证:</Text>
             <View className='evidence-media-upload'>
                 {
-                    taskList[taskIndex].uploadList.map((uploadURL: string, uploadIndex: number) => {
+                    (taskData?.uploadList || []).map((uploadURL: string, uploadIndex: number) => {
                         return (
                             <View key={uploadIndex} className='evidence-media-container'>
                                 <Image src={uploadURL}
@@ -57,8 +51,8 @@ export default function Evidence({taskIndex}) {
                                     mode="aspectFill"
                                 ></Image>
                                 <View className='evidence-center-item evidence-media-close'
-                                style={{backgroundColor:theme.primary1}}
-                                    onTap={() => deleteUploadImage(taskIndex, uploadURL)}>
+                                    style={{ backgroundColor: theme.primary1 }}
+                                    onTap={() => deleteUploadImage(uploadURL)}>
                                     <AtIcon value='close' size="0.8rem" />
 
                                 </View>
@@ -67,8 +61,8 @@ export default function Evidence({taskIndex}) {
                     })
                 }
                 {
-                    taskList[taskIndex].uploadList.length < MAX_UPLOAD_COUNT ? (
-                        <View className="evidence-center-item evidence-add-evidence" onTap={() => uploadImage(taskIndex)}>
+                    (taskData?.uploadList || []).length < MAX_UPLOAD_COUNT ? (
+                        <View className="evidence-center-item evidence-add-evidence" onTap={uploadImage}>
                             <View style={{
                                 display: "flex",
                                 flexDirection: "column",

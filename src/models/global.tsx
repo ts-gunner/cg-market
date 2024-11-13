@@ -4,10 +4,12 @@ import Taro from '@tarojs/taro'
 
 
 type GlobalType = {
-    isRefresh: boolean
+    isRefresh: boolean,
+    pageLoading: boolean
 }
 const initState: GlobalType = {
-    isRefresh: false
+    isRefresh: false,
+    pageLoading: false
 }
 
 export const globalModel = createModel<RootModel>()({
@@ -22,6 +24,12 @@ export const globalModel = createModel<RootModel>()({
             return {
                 ...state,
                 isRefresh: !state.isRefresh
+            }
+        },
+        setPageLoading: (state: GlobalType, payload:boolean) => {
+            return {
+                ...state,
+                pageLoading: payload
             }
         }
     },

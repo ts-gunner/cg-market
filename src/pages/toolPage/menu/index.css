@@ -1,0 +1,44 @@
+.cook-book-container {
+    display: flex;
+    
+}
+.cook-book-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.cook-book-title-box {
+    margin: 0.5rem 0;
+    margin-left: 0.5rem;
+}
+.cook-book-left-container {
+    width: 5rem;
+    height: 100vh;
+    position: fixed;
+    background-color: #eaecf1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.cook-book-right-container {
+    margin-left: 5rem;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: red;
+}
+
+.cook-book-type-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    
+}
+.cook-book-type-item-active {
+    background-color: white;
+    border-radius: 1rem;
+    width: 100%;
+
+}

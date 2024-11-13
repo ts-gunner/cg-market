@@ -7,13 +7,14 @@ import TaskSituation from './TaskSituation';
 import { AtMessage, AtFab } from 'taro-ui'
 import "./index.css"
 import { TaskStatus, TaskWorkerRecord,TaskStatusMapping } from '@/data/typing';
-import { taskTabData, workerRole } from '@/data/config';
+import { taskTabData, workerRole,monitorRole,CATEGORY } from '@/data/config';
 import { RootState, Dispatch } from '@/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { request,navigateTo } from '@tarojs/taro';
 import { routes } from '@/data/api';
 import storage from '@/utils/storage';
 import UnLogin from '@/component/unLogin/UnLogin';
+import UnFound from '@/component/UnFound';
 import Taro from '@tarojs/taro';
 
 
@@ -81,7 +82,7 @@ const TaskMonitor = () => {
                                         任务类别:
                                     </Text>
                                     <Text>
-                                        {item.category}
+                                        {CATEGORY.find((cate)=> cate.key == item.category)?.label}
                                     </Text>
                                 </View>
                                 <View className='task-work-item'>
@@ -165,11 +166,14 @@ export default function Task() {
 
     const TaskContainer = () => {
         if (isAuth) {
-            let rId = roles.findIndex((role) => role.role_id === workerRole)
-            if (rId !== -1) {
+            let wrId = roles.findIndex((role) => role.role_id === workerRole)
+            let mrId = roles.findIndex((role) => role.role_id === monitorRole)
+            if (wrId !== -1) {
                 return <TaskWorker />
-            } else {
+            } else if (mrId !== -1) {
                 return <TaskMonitor />
+            } else {
+                return <UnFound />
             }
         }else {
             return <UnLogin />

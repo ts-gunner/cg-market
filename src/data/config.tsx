@@ -23,6 +23,7 @@ export const IMAGE_URL = {
     "common_tool": "https://pic.imgdb.cn/item/6714b5c5d29ded1a8c77659b.png",
     "translation": "https://pic.imgdb.cn/item/6714bbcfd29ded1a8c814953.png",
     "gold": "https://pic.imgdb.cn/item/671508f9d29ded1a8c0bd320.png",
+    "cookbook": "https://pic.imgdb.cn/item/6730c5efd29ded1a8ca026ce.png",
     "not_auth": "https://pic.imgdb.cn/item/6718f46dd29ded1a8cf1d6a2.png",  // 未登录头像
     "un-login": "https://pic.imgdb.cn/item/672cd0a9d29ded1a8c526258.png"  // 未登录页面插画
 }
@@ -85,3 +86,4 @@ export const taskTabData = [
 ]
 
 export const workerRole = "monkey"
+export const monitorRole = "monitor"

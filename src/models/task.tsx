@@ -1,23 +1,48 @@
 import { createModel } from "@rematch/core";
 import type { RootModel } from '@/models'
-import { request, uploadFile,navigateBack } from "@tarojs/taro";
+import { request, uploadFile, navigateBack } from "@tarojs/taro";
 import { StudyTaskItem, HouseworkTaskItem, SportTaskItem, TaskCategory } from "@/data/typing";
 import storage from "@/utils/storage";
 import { routes } from "@/data/api";
 import Taro from '@tarojs/taro'
-
+import lodash from 'lodash'
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
 type TaskType = {
     currentType: TaskCategory,
-    studyTaskData: StudyTaskItem[],
-    houseworkTaskData: HouseworkTaskItem[],
-    sportTaskData: SportTaskItem[]
+    studyTaskData: StudyTaskItem,
+    houseworkTaskData: HouseworkTaskItem,
+    sportTaskData: SportTaskItem
 }
 
 const initState: TaskType = {
     currentType: TaskCategory.DEFAULT,
-    studyTaskData: [],
-    houseworkTaskData: [],
-    sportTaskData: []
+    studyTaskData: {
+        taskID: "",
+        date: "",
+        startTime: "",
+        endTime: "",
+        content: "",
+        point: 0.2,
+        uploadList: []
+    },
+    houseworkTaskData: {
+        taskID: "",
+        title: "",
+        point: 0.2,
+        uploadList: []
+    },
+    sportTaskData: {
+        taskID: "",
+        title: "",
+        point: 0.2,
+        uploadList: []
+    }
 }
 
 export const taskModel = createModel<RootModel>()({
@@ -29,30 +54,38 @@ export const taskModel = createModel<RootModel>()({
                 currentType: payload
             }
         },
-        addTaskItem: (state: TaskType, payload: any) => {
+        changeTaskItem: (state: TaskType, payload: { keyName: string, keyValue: any }) => {
+            let new_state = lodash.cloneDeep(state)
             let taskField = state.currentType
-            let arr = [...state[taskField]]
-            arr.push(payload)
-            let new_state = { ...state }
-            new_state[taskField] = arr
-            return new_state
-
-        },
-        changeTaskItem: (state: TaskType, payload: { index: number, keyName: string, keyValue: any }) => {
-            let taskField = state.currentType
-            let item = state[taskField][payload.index]
-            item[payload.keyName] = payload.keyValue
-
-            let new_state = { ...state }
-            new_state[taskField] = [...state[taskField]]
+            state[taskField][payload.keyName] = payload.keyValue
+            new_state[taskField] = lodash.cloneDeep(state[taskField])
             return new_state
         },
         clearTask: (state: TaskType) => {
             let taskField = state.currentType
             let new_state = { ...state }
-            new_state[taskField] = []
+            new_state[taskField] = initState[taskField]
             return new_state
         },
+        createTaskID: (state: TaskType) => {
+            if (state[state.currentType].taskID) {
+                return state
+            } else {
+                let new_state = lodash.cloneDeep(state)
+                let taskField = state.currentType
+                state[taskField]["taskID"] = generateUUID()
+                new_state[taskField] = lodash.cloneDeep(state[taskField])
+                return new_state
+            }
+        },
+        addAttachment: (state: TaskType, payload: string) => {
+            let new_state = lodash.cloneDeep(state)
+            let taskField = state.currentType
+            state[taskField]["uploadList"].push(payload)
+            new_state[taskField] = lodash.cloneDeep(state[taskField])
+            return new_state
+        }
+
     },
     effects: (dispatch) => ({
         addTask: async (_, state) => {
@@ -71,8 +104,9 @@ export const taskModel = createModel<RootModel>()({
 
         },
         addStudyTaskAPI: async (_, state) => {
-            let taskItem = state.taskModel.studyTaskData[0]
+            let taskItem = state.taskModel.studyTaskData
             let data = {
+                task_id: taskItem.taskID,
                 category: "study",
                 openid: await storage.getItem("openid"),
                 content: taskItem.content,
@@ -82,6 +116,7 @@ export const taskModel = createModel<RootModel>()({
                     endTime: taskItem.endTime
                 }),
                 point: taskItem.point,
+                upload_list: taskItem.uploadList
             }
             let msg = ""
             if (!taskItem.content) msg += "学习内容未填写；"
@@ -100,13 +135,15 @@ export const taskModel = createModel<RootModel>()({
             dispatch.taskModel.requestTaskAPI(data)
         },
         addHouseworkTaskAPI: async (_, state) => {
-            let taskItem = state.taskModel.houseworkTaskData[0]
+            let taskItem = state.taskModel.houseworkTaskData
             let data = {
+                task_id: taskItem.taskID,
                 category: "housework",
                 openid: await storage.getItem("openid"),
                 content: taskItem.title,
                 point: taskItem.point,
-                body: ""
+                body: "",
+                upload_list: taskItem.uploadList
             }
             let msg = ""
             if (!taskItem.title) msg += "家务类型未选择；"
@@ -122,13 +159,15 @@ export const taskModel = createModel<RootModel>()({
             dispatch.taskModel.requestTaskAPI(data)
         },
         addSportTaskAPI: async (_, state) => {
-            let taskItem = state.taskModel.sportTaskData[0]
+            let taskItem = state.taskModel.sportTaskData
             let data = {
+                task_id: taskItem.taskID,
                 category: "sport",
                 openid: await storage.getItem("openid"),
                 content: taskItem.title,
                 point: taskItem.point,
-                body: ""
+                body: "",
+                upload_list: taskItem.uploadList
             }
             let msg = ""
             if (!taskItem.title) msg += "运动类型未选择；"
@@ -144,7 +183,10 @@ export const taskModel = createModel<RootModel>()({
             dispatch.taskModel.requestTaskAPI(data)
         },
 
-        requestTaskAPI: async (data: any) => {
+        requestTaskAPI: async (data: any, state) => {
+            if (state.globalModel.pageLoading) return
+
+            dispatch.globalModel.setPageLoading(true)
             request({
                 url: routes.addTask,
                 method: "POST",
@@ -155,7 +197,12 @@ export const taskModel = createModel<RootModel>()({
                 },
                 success: async (res) => {
                     let response = res.data
-                    if (response.code === 200) await dispatch.taskModel.uploadAttachment(response.data)
+                    if (response.code === 200) {
+                        dispatch.globalModel.setPageLoading(false)
+                        dispatch.taskModel.clearTask()
+                        navigateBack()
+                    }
+
                     else throw new Error(response.msg)
                 },
                 fail: (res) => {
@@ -168,37 +215,14 @@ export const taskModel = createModel<RootModel>()({
             })
         },
 
-        uploadAttachment: async (task_id, state) => {
-            let file_list: string[];
-            switch (state.taskModel.currentType) {
-                case TaskCategory.STUDY:
-                    file_list = state.taskModel.studyTaskData[0].uploadList
-                    break;
-                case TaskCategory.HOUSEWORK:
-                    file_list = state.taskModel.houseworkTaskData[0].uploadList
-                    break;
-                case TaskCategory.SPORT:
-                    file_list = state.taskModel.sportTaskData[0].uploadList
-                    break;
-                default:
-                    Taro.atMessage({
-                        'message': '任务类型异常: ' + state.taskModel.currentType,
-                        'type': "error",
-                        "duration": 2000
-                    })
-                    return
-            }
+        uploadAttachment: async (file_list: string[]) => {
             let token = await storage.getItem("token")
-            let openid = await storage.getItem("openid")
+            dispatch.globalModel.setPageLoading(true)
             file_list.map((attach_url) => {
                 uploadFile({
-                    url: routes.saveTaskAttachment,
+                    url: routes.uploadAttachment,
                     filePath: attach_url,
                     name: "blob",
-                    formData: {
-                        task_id,
-                        openid
-                    },
                     header: {
                         "Content-Type": "multipart/form-data",
                         "Auth-Token": token
@@ -206,16 +230,9 @@ export const taskModel = createModel<RootModel>()({
                     success: (res) => {
                         let response: any = JSON.parse(res.data)
                         if (response.code === 200) {
-                            console.log("保存成功！！")
-                            dispatch.taskModel.clearTask()
-                            Taro.atMessage({
-                                'message': '保存成功！！',
-                                'type': "success",
-                                "duration": 2000
-                            })
-                            navigateBack()
-
-                        }else {
+                            let remote_url = response.data
+                            dispatch.taskModel.addAttachment(remote_url)
+                        } else {
                             Taro.atMessage({
                                 'message': '添加任务接口异常',
                                 'type': "error",
@@ -234,6 +251,7 @@ export const taskModel = createModel<RootModel>()({
                 })
             })
 
+            dispatch.globalModel.setPageLoading(false)
 
         }
     })

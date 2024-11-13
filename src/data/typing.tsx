@@ -6,6 +6,7 @@ export enum TaskCategory {
 }
 
 export type StudyTaskItem = {
+    taskID: string,
     date: string,
     startTime: string,
     endTime: string,
@@ -19,10 +20,12 @@ export enum StudyTaskField {
     STARTTIME = "startTime",
     ENDTIME = "endTime",
     CONTENT = "content",
-    UPLOADLIST = "uploadList"
+    UPLOADLIST = "uploadList",
+    POINT = "point",
 }
 
 export type HouseworkTaskItem = {
+    taskID: string,
     title: string,
     point: number,
     uploadList: string[]
@@ -30,10 +33,12 @@ export type HouseworkTaskItem = {
 
 export enum HouseworkTaskFiled {
     TITLE = "title",
+    POINT = "point",
     UPLOADLIST = "uploadList"
 }
 
 export type SportTaskItem = {
+    taskID: string,
     title: string,
     point: number,
     uploadList: string[]
@@ -41,6 +46,7 @@ export type SportTaskItem = {
 
 export enum SportTaskFiled {
     TITLE = "title",
+    POINT = "point",
     UPLOADLIST = "uploadList"
 }
 
