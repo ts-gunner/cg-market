@@ -1,10 +1,11 @@
 import { View,Image,Text } from "@tarojs/components"
-import { IMAGE_URL } from "@/data/config"
+import { IMAGE_URL, COMMON_ROUTER } from "@/data/config"
+import { navigateTo } from "@tarojs/taro"
 import "./common.css"
 
-const Card = ({title, icon}: {title:string, icon:string}) => {
+const Card = ({title, icon, onClick}: {title:string, icon:string, onClick?:()=>void}) => {
     return (
-        <View className="mine-common-card2">
+        <View className="mine-common-card2" onClick={onClick}>
             <View>
                 <Image src={icon} className="mine-common-card2-img"></Image>
             </View>
@@ -14,15 +15,20 @@ const Card = ({title, icon}: {title:string, icon:string}) => {
         </View>
     )
 }
-
+const goto_manage_page = (key:string) => {
+    navigateTo({url: `/pages/commonPage/index?pageKey=${key}`})
+}
 export default function Common() {
     return (
         <View className="mine-common-view">
             <View className="mine-common-card">
-                <Card title="兑换记录" icon={IMAGE_URL["exchange_record_icon"]}></Card>
-                <Card title="任务记录" icon={IMAGE_URL["task_record_icon"]}></Card>
-                <Card title="兑换记录" icon={IMAGE_URL["exchange_record_icon"]}></Card>
-                <Card title="兑换记录" icon={IMAGE_URL["exchange_record_icon"]}></Card>
+                {
+                    COMMON_ROUTER.map((item) => {
+                        return <Card 
+                        key={item.key}
+                        title={item.label} icon={item.icon} onClick={()=> goto_manage_page(item.key)}></Card>
+                    })
+                }
             </View>
 
         </View>

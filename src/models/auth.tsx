@@ -92,6 +92,7 @@ export const authModel = createModel<RootModel>()({
                         storage.setItem("openid", response.data.openid)
                         storage.setItem("session_key", response.data.session_key)
                         storage.setItem("token", response.data.token)
+                        storage.setItem("roles", response.data.roles.map((item:any) => item.role_id))
                         dispatch.authModel.setAuthState(true)
                         // 用户授权
                         authorize({ scope: "scope.camera" })

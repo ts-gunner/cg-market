@@ -6,7 +6,6 @@ import { RootState, Dispatch } from "@/store"
 import { useDispatch, useSelector } from "react-redux"
 import goodData from "./data"
 
-
 export default function Shop() {
     const searchValue = useSelector((rootState: RootState) => rootState.shopModel.searchValue)
     const dispatch = useDispatch<Dispatch>()

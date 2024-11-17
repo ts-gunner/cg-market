@@ -1,8 +1,4 @@
 import { View, Text } from '@tarojs/components'
-import { request } from '@tarojs/taro'
-import { useEffect, useState } from 'react'
-import { routes } from '@/data/api'
-import storage from '@/utils/storage'
 import { TaskStatus } from '@/data/typing'
 import { CATEGORY } from '@/data/config'
 import { navigateTo } from '@tarojs/taro'
@@ -40,38 +36,14 @@ const TaskItem = ({ task }: { task: TaskItemBase }) => {
     )
 }
 
-export default function TaskSituation({taskStatus}: {taskStatus: TaskStatus}) {
-    const [taskList, setTaskList] = useState([])
-    useEffect(() => {
-        getApprovalTaskList()
-    }, [])
-
-    const getApprovalTaskList = async () => {
-        request({
-            url: routes.getTaskList,
-            method: "POST",
-            data: {
-                openid: await storage.getItem("openid"),
-                status: taskStatus
-            },
-            header: {
-                "Content-Type": "application/json",
-                "Auth-Token": await storage.getItem("token")
-            },
-            success: (res) => {
-                let response = res.data
-                if (response.code === 200) {
-                    let task_list = response.data
-                    setTaskList(task_list)
-                }
-            }
-        })
-    }
+export default function TaskSituation({taskList, taskStatus}: {taskList:  TaskItemBase[], taskStatus: TaskStatus}) {
+   
+    
     return (
         <View>
             {CATEGORY.map((cg) => {
                 let task_list = taskList.filter(
-                    (tl: TaskItemBase) => tl.category == cg.key
+                    (tl: TaskItemBase) => tl.category == cg.key && tl.status ===  taskStatus
                 ).sort(
                     (a:TaskItemBase, b:TaskItemBase) => b.create_time.localeCompare(a.create_time)
                     )

@@ -42,8 +42,6 @@ export default function Category() {
                                     <AtButton className="category-add" onClick={() => enterCategory(item.key)}>添加</AtButton>
                                 </View>
                             </View>
-
-
                         </View>
                     )
                 })

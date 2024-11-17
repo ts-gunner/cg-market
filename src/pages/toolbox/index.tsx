@@ -38,6 +38,7 @@ const boxList = [
 
 const enterToolBoxPage = (key:string) => {
     navigateTo({url: `/pages/toolPage/index?toolKey=${key}`})
+    
 }
 export default function ToolBox() {
     return (

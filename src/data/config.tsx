@@ -25,8 +25,34 @@ export const IMAGE_URL = {
     "gold": "https://pic.imgdb.cn/item/671508f9d29ded1a8c0bd320.png",
     "cookbook": "https://pic.imgdb.cn/item/6730c5efd29ded1a8ca026ce.png",
     "not_auth": "https://pic.imgdb.cn/item/6718f46dd29ded1a8cf1d6a2.png",  // 未登录头像
-    "un-login": "https://pic.imgdb.cn/item/672cd0a9d29ded1a8c526258.png"  // 未登录页面插画
+    "un-login": "https://pic.imgdb.cn/item/672cd0a9d29ded1a8c526258.png",  // 未登录页面插画
+    "shop_manage_icon": "https://pic.imgdb.cn/item/67376561d29ded1a8cd9362d.png",
+    "rule_manage_icon": "https://pic.imgdb.cn/item/673800ecd29ded1a8c3f4b3c.png"
 }
+
+export const COMMON_ROUTER = [
+    {
+        key: "exchange_record",
+        label: "兑换记录",
+        icon: IMAGE_URL["exchange_record_icon"]
+    },
+    {
+        key: "task_record",
+        label: "任务记录",
+        icon: IMAGE_URL["task_record_icon"]
+    },
+    {
+        key: "shop_manage",
+        label: "商品管理",
+        icon: IMAGE_URL["shop_manage_icon"]
+    },
+    {
+        key: "game_rule",
+        label: "游戏规则",
+        icon: IMAGE_URL["rule_manage_icon"]
+    },
+ 
+]
 
 export const MAX_UPLOAD_COUNT = 5
 

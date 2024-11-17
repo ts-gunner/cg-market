@@ -4,7 +4,8 @@ import "./tab.css"
 
 interface TabType {
     activateKey: string | number
-    children: React.ReactElement<typeof TabContent>[]
+    children: React.ReactElement<typeof TabContent>[],
+    tabWidth?: number,
     onTabClick: (key: any) => void
 }
 
@@ -16,7 +17,7 @@ export const TabContent = ({ children }: {
     return <View>{children}</View>
 }
 
-export default function Tab({ activateKey, children, onTabClick }: TabType) {
+export default function Tab({ activateKey, children, onTabClick, tabWidth=4.375 }: TabType) {
     const [animation, setAnimation] = React.useState('');
     const [nowClientX, setNowClientX] = React.useState(0)
     const tabs = React.Children.toArray(children).map((child) => {
@@ -29,6 +30,7 @@ export default function Tab({ activateKey, children, onTabClick }: TabType) {
             return null
         }
     }).filter((item) => item != null)
+
     const tabIndex = tabs.findIndex(item => item.key === activateKey)
 
     const handleTabTouchStart = (event: any) => {
@@ -37,6 +39,7 @@ export default function Tab({ activateKey, children, onTabClick }: TabType) {
     const handleTabTouchEnd = (event: any) => {
         let currentClientX = event.changedTouches[0].clientX
         const tabIndex = tabs.findIndex(item => item.key === activateKey)
+
         if (currentClientX < nowClientX && Math.abs(nowClientX - currentClientX) >= 50) {
             console.log("向左滑动")
             setAnimation("slideInLeft")
@@ -65,7 +68,7 @@ export default function Tab({ activateKey, children, onTabClick }: TabType) {
                 {tabs.map((item) => {
                     return <View
                         style={{
-                            width: "4.375rem",
+                            width: `${tabWidth}rem`,
                             color: item.key === activateKey ? "black" : "#808080",
                             fontWeight: item.key === activateKey ? 800 : 500,
                             display: "flex",
